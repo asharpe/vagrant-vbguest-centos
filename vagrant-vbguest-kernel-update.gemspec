@@ -1,20 +1,19 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'vagrant-vbguest-centos/version'
+require 'vagrant-vbguest-kernel-update/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "vagrant-vbguest-centos"
-  spec.version       = VagrantVbguestCentos::VERSION
-  spec.authors       = ["Robert Schulze"]
-  spec.email         = ["robert@dotless.de"]
+  spec.name          = "vagrant-vbguest-kernel-update"
+  spec.version       = VagrantVbguestKernelUpdate::VERSION
+  spec.authors       = ["Andrew Sharpe"]
+  spec.email         = ["andrew.sharpe.79@gmail.com"]
 
-  spec.summary       = %q{Extends vagrant-vbguest with an specific CentOS installer class.}
+  spec.summary       = %q{Extends vagrant-vbguest to update the kernel to the latest before installation.}
   spec.description   = <<-DESC
     This is an experimental extension to vagrant-vbguest.
-    It might also serve as a template to write your own vagrant-vbguest extension.
   DESC
-  spec.homepage      = "https://github.com/fnordfish/vagrant-vbguest-centos"
+  spec.homepage      = "https://github.com/asharpe/vagrant-vbguest-kernel-update"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|

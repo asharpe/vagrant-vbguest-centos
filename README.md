@@ -1,6 +1,6 @@
-# VagrantVbguestCentos
+# VagrantVbguestKernelUpdate
 
-This is an experimental VagrantVbguest Installer for dealing with CentOS as descibed in https://github.com/dotless-de/vagrant-vbguest/pull/231
+This is an experimental VagrantVbguest Installer which attempts to update the kernel to the latest available version before installing the guest additions
 
 
 ## Installation
@@ -8,13 +8,13 @@ This is an experimental VagrantVbguest Installer for dealing with CentOS as desc
 This plugin requires the vagrant plugin [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest/)
 
 ```bash
-vagrant plugin install 'vagrant-vbguest-centos'
+vagrant plugin install 'vagrant-vbguest-kernel-update'
 ```
 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/fnordfish/vagrant-vbguest-centos. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+I don't have a lot of time for this project so you may wish to fork and move on.  I will happily accept pull requests if they match the existing work and don't break existing functionality.
 
 
 ## License
