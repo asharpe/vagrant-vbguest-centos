@@ -4,13 +4,13 @@ rescue LoadError
   raise "This Vagrant plugin requires the vagrant-vbguest plugin."
 end
 
-require "vagrant-vbguest-kernel-update/version"
-require "vagrant-vbguest-kernel-update/installer"
+require "vagrant-vbguest-redhat-kernel-update/version"
+require "vagrant-vbguest-redhat-kernel-update/installer"
 
-module VagrantVbguestkernelUpdate
+module VagrantVbguestRedHatkernelUpdate
   class Plugin < Vagrant.plugin("2")
 
-    name "vagrant-vbguest-kernel-update"
+    name "vagrant-vbguest-redhat-kernel-update"
     description "Extends vagrant-vbguest to update the kernel before installation (hopefully allowing dependency packages to be available in the repository)."
   end
 end

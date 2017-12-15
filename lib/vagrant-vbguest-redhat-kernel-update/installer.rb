@@ -1,4 +1,4 @@
-module VagrantVbguestKernelUpdate
+module VagrantVbguestRedHatKernelUpdate
   class Installer < ::VagrantVbguest::Installers::RedHat
     include VagrantVbguest::Helpers::Rebootable
 
@@ -8,13 +8,17 @@ module VagrantVbguestKernelUpdate
       communicate.sudo(install_dependencies_cmd, opts, &block)
       check_and_upgrade_kernel!(opts, &block)
       super
+
+      # really old versions of the guest additions (4.2.6) fail to 
+      # remove the vboxguest module from the running kernel, which
+      # makes the loading of the newer vboxsf module fail.
+      # The newer init scripts seem to do it just fine, so we'll just
+      # use them to get this working
       restart_additions(opts, &block)
     end
 
   protected
 
-    # this needs to be done when upgradeing from a really old
-    # version of the guest additions
     def restart_additions(opts=nil, &block)
       communicate.sudo("/etc/init.d/vboxadd restart", opts, &block)
     end
@@ -55,4 +59,4 @@ module VagrantVbguestKernelUpdate
 
   end
 end
-VagrantVbguest::Installer.register(VagrantVbguestKernelUpdate::Installer, 6)
+VagrantVbguest::Installer.register(VagrantVbguestRedHatKernelUpdate::Installer, 6)

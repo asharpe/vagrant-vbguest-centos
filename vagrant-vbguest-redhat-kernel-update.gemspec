@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'vagrant-vbguest-kernel-update/version'
+require 'vagrant-vbguest-redhat-kernel-update/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "vagrant-vbguest-kernel-update"
-  spec.version       = VagrantVbguestKernelUpdate::VERSION
+  spec.name          = "vagrant-vbguest-redhat-kernel-update"
+  spec.version       = VagrantVbguestRedHatKernelUpdate::VERSION
   spec.authors       = ["Andrew Sharpe"]
   spec.email         = ["andrew.sharpe.79@gmail.com"]
 
@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = <<-DESC
     This is an experimental extension to vagrant-vbguest.
   DESC
-  spec.homepage      = "https://github.com/asharpe/vagrant-vbguest-kernel-update"
+  spec.homepage      = "https://github.com/asharpe/vagrant-vbguest-redhat-kernel-update"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|

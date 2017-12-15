@@ -1,4 +1,4 @@
-# VagrantVbguestKernelUpdate
+# VagrantVbguestRedHatKernelUpdate
 
 This is an experimental VagrantVbguest Installer which attempts to update the kernel to the latest available version before installing the guest additions
 
@@ -8,7 +8,7 @@ This is an experimental VagrantVbguest Installer which attempts to update the ke
 This plugin requires the vagrant plugin [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest/)
 
 ```bash
-vagrant plugin install 'vagrant-vbguest-kernel-update'
+vagrant plugin install 'vagrant-vbguest-redhat-kernel-update'
 ```
 
 
