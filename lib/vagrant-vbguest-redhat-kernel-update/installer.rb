@@ -12,21 +12,18 @@ module VagrantVbguestRedHatKernelUpdate
       # really old versions of the guest additions (4.2.6) fail to 
       # remove the vboxguest module from the running kernel, which
       # makes the loading of the newer vboxsf module fail.
-      # The newer init scripts seem to do it just fine, so we'll just
-      # use them to get this working
-      restart_additions(opts, &block)
+      # Well just reboot the VM to make sure the latest modules are loaded
+      @vm.ui.warn "Rebooting to ensure guest additions are loaded"
+      reboot(@vm, {:auto_reboot => true})
     end
 
   protected
 
-    def restart_additions(opts=nil, &block)
-      # TODO appropriate restart with systemd
-      communicate.sudo("[[ -f /etc/init.d/vboxadd ]] && /etc/init.d/vboxadd restart || :", opts, &block)
-    end
-
     # TODO submit MR to have this in upstream
     def dependency_list
       packages = [
+        'kernel-devel-`uname -r`',
+        'kernel-headers-`uname -r`',
         'gcc',
         'binutils',
         'make',
@@ -45,15 +42,13 @@ module VagrantVbguestRedHatKernelUpdate
 
       if exit_status == 100 then
         upgrade_kernel(opts, &block)
-      else
-        communicate.sudo("yum -y install kernel-{devel,headers}")
       end
     end
 
     def upgrade_kernel(opts=nil, &block)
-      @env.ui.warn("Attempting to upgrade the kernel")
+      @vm.ui.warn("Attempting to upgrade the kernel")
       communicate.sudo("yum -y upgrade kernel{,-devel,-headers}", opts, &block)
-      @env.ui.warn("Restarting to activate upgraded kernel")
+      @vm.ui.warn("Restarting to activate upgraded kernel")
 
       # should work from what I can tell, but doesn't :(
       #vm.action(:reload, {});
@@ -81,7 +76,7 @@ module VagrantVbguestRedHatKernelUpdate
       end
       # this is not ideal - we're just grabbing the bits we need to allow this to work
       @env.action_runner().run(simple_reboot, {
-        :ui => @env.ui,
+        :ui => vm.ui,
         :machine => vm,
       })
     end
